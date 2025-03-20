@@ -123,7 +123,7 @@ Necesitamos volver a instalar las extensiones para que el WSL en VSCode sea capa
 ## 8. Instalar paquetes necesarios para correr Tensorflow
 Si estamos haciendo esta instalacion tenemos que descomentar `tensorflow[and-cuda]` del archivo `requirements.txt` y comentar `tensorflow`. Con eso hecho y el entorno virtual activado, ejecutamos
 ```bash
-pip install requirements.txt
+pip install -r requirements.txt
 ```
 y nos deberia instalar las librerias necesarias para usar tensorflow con la GPU.
 
