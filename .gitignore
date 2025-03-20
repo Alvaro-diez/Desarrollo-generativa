@@ -8,6 +8,8 @@ venvWSL
 *.png
 *.keras
 *.h5
+*.csv
+*.ini
 # .gitignore
 
 # Directorios

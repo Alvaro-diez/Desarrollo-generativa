@@ -10,3 +10,4 @@ tensorflow[and-cuda]
 pydot
 graphviz
 jinja2
+scikit-learn
