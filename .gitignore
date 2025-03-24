@@ -11,6 +11,7 @@ venvWSL
 *.csv
 *.ini
 # .gitignore
+!house*.csv
 
 # Directorios
 solutions/*/*

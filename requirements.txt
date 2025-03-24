@@ -5,8 +5,8 @@ scipy
 statsmodels
 sympy
 seaborn
-# tensorflow
-tensorflow[and-cuda]
+tensorflow
+# tensorflow[and-c1da]
 pydot
 graphviz
 jinja2
