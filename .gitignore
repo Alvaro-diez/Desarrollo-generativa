@@ -5,17 +5,21 @@ venv
 venvWSL
 
 # Archivos
-*.png
-*.keras
-*.h5
-*.csv
 *.ini
-# .gitignore
-!house*.csv
 
-# Directorios
-solutions/*/*
-# */datasets/*
-# */titanic*/*
-# */traffic/*
-# */training*/*
+# Directorio solutions
+solutions/*.keras
+solutions/*.h5
+solutions/*.csv
+solutions/*.png
+*/datasets/*
+*/titanic*/*
+*/traffic/*
+*/training*/*
+
+# Directorio casos de estudio
+# */caso_1/*.csv
+# */caso_1/*.xlsx
+# */caso_1/*.h5
+# */caso_1/*.keras
+# */caso_1/*.pkl
