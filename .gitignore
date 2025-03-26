@@ -11,6 +11,8 @@ venvWSL
 solutions/*.keras
 solutions/*.h5
 solutions/*.csv
+solutions/*.pdf
+!solutions/Apple_Tweets.csv
 solutions/*.png
 */datasets/*
 */titanic*/*
