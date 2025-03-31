@@ -18,6 +18,7 @@ solutions/*.png
 */titanic*/*
 */traffic/*
 */training*/*
+*/binary_cla*/*
 
 # Directorio casos de estudio
 # */caso_1/*.csv
