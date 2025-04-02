@@ -19,6 +19,11 @@ solutions/*.png
 */traffic/*
 */training*/*
 */binary_cla*/*
+*/lightning*/*
+*/saved_models*/*
+
+# Directorio data
+data*/*
 
 # Directorio casos de estudio
 # */caso_1/*.csv
