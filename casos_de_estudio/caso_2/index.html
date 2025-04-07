@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Predicción de Dígitos</title>
+    <style>
+        /* Estilo global */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f7fb;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            flex-direction: column;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        /* Contenedor de la sección de entrada */
+        .input-section {
+            background-color: #fff;
+            padding: 50px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+            width: 80%;
+            max-width: 400px;
+        }
+
+        .input-section input[type="file"]{
+            margin-bottom: 40px;
+            border: 2px dashed #ccc;
+            border-radius: 10px;
+            padding: 40px;
+            text-align: center;
+            cursor: pointer;
+            width: 80%;
+        }
+
+        .input-section button {
+            background-color: #4CAF50;
+            color: rgb(255, 255, 255);
+            font-size: 1.1rem;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .input-section button:hover {
+            background-color: #37813b;
+        }
+
+        /* Resultado */
+        #result {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-top: 20px;
+            color: #333;
+        }
+
+        /* Estilo para el spinner de carga */
+        #loading {
+            display: none;
+            font-size: 1.2rem;
+            margin-top: 10px;
+            color: #666;
+        }
+
+        /* Efecto de transición para la caja de resultados */
+        #result {
+            opacity: 0;
+            transition: opacity 5.5s ease-in-out;
+        }
+
+        #result.show {
+            opacity: 1;
+        }
+
+        /* Estilos para el contenedor general */
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Predicción de Dígitos</h1>
+
+        <div class="input-section">
+            <input type="file" id="fileInput" accept="image/*" style="display: inline;">
+            <button onclick="predict()">Predecir</button>
+        </div>
+
+        <div id="loading">Cargando...</div>
+        <div id="result"></div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti"></script>
+
+    <script>
+
+        // Crear el objeto de audio para el sonido
+        const confettiSound = new Audio('yippee-tbh.mp3'); // Cambia esta URL por tu archivo de sonido
+
+        async function predict() {
+            const fileInput = document.getElementById('fileInput');
+            const resultDiv = document.getElementById('result');
+            const loadingDiv = document.getElementById('loading');
+
+            if (fileInput.files.length === 0) {
+                alert("Por favor, seleccione una imagen.");
+                return;
+            }
+
+            // Mostrar mensaje de carga
+            loadingDiv.style.display = "block";
+            resultDiv.textContent = "";
+            resultDiv.classList.remove('show');  // Esconde el resultado anterior
+
+            const formData = new FormData();
+            formData.append('file', fileInput.files[0]);
+
+            // Realizar la solicitud POST a la API
+            try {
+                const response = await fetch("http://127.0.0.1:8000/predict/", {
+                    method: "POST",
+                    body: formData
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    const predictedDigit = data.predicted_digit;
+
+
+                    // Llamar a la función de confeti
+                    // triggerConfetti();
+
+                    // Ocultar mensaje de carga y mostrar resultado
+                    loadingDiv.style.display = "none";
+                    resultDiv.textContent = `Predicción: El dígito es ${predictedDigit}`;
+                    resultDiv.classList.add('show');
+
+                    setTimeout(() => {
+                        triggerConfetti();
+                        confettiSound.play(); // Reproducir sonido
+                    }, 2000); // Esperar 2 segundos                
+                } else {
+                    loadingDiv.style.display = "none";
+                    resultDiv.textContent = "Error en la predicción.";
+                    resultDiv.classList.add('show');
+                }
+            } catch (error) {
+                loadingDiv.style.display = "none";
+                resultDiv.textContent = "Error en la solicitud: " + error.message;
+                resultDiv.classList.add('show');
+            }
+        }
+        
+            // Función para disparar el confeti
+        function triggerConfetti() {
+            const count = 1500; // Cuántos fragmentos de confeti
+            const defaults = {
+                origin: { y: 0.95 }
+            };
+
+            // Disparar el confeti
+            confetti(Object.assign({}, defaults, {
+                spread: 26,
+                startVelocity: 55,
+                decay: 0.9,
+                scalar: 1.2
+            }));
+
+            confetti(Object.assign({}, defaults, {
+                spread: 60,
+                startVelocity: 35,
+                decay: 0.92,
+                scalar: 0.8
+            }));
+
+            confetti(Object.assign({}, defaults, {
+                spread: 100,
+                startVelocity: 30,
+                decay: 0.95,
+                scalar: 0.5
+            }));
+        }
+    </script>
+
+</body>
+</html>
