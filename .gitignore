@@ -18,6 +18,9 @@ solutions/*.png
 */titanic*/*
 */traffic/*
 */training*/*
+*/checkpoint*/*
+*/gan_results*/*
+!*/gan_results*/gifs/
 */binary_cla*/*
 */lightning*/*
 */saved_models*/*
@@ -26,8 +29,8 @@ solutions/*.png
 data*/*
 
 # Directorio casos de estudio
-# */caso_1/*.csv
-# */caso_1/*.xlsx
-# */caso_1/*.h5
-# */caso_1/*.keras
-# */caso_1/*.pkl
+# */caso_*/*.csv
+# */caso_*/*.xlsx
+# */caso_*/*.h5
+# */caso_*/*.keras
+# */caso_*/*.pkl
