@@ -21,9 +21,15 @@ solutions/*.png
 */checkpoint*/*
 */gan_results*/*
 !*/gan_results*/gifs/
+!*/gan_results*/resultado*/
+*/vae_results*/*
+!*/vae_results*/gifs/
 */binary_cla*/*
 */lightning*/*
 */saved_models*/*
+*/casos_de_estudio*/caso_4/rostros
+*/casos_de_estudio*/caso_4/rostros/*
+*/logs*/*
 
 # Directorio data
 data*/*
